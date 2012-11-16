@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" manifest="web.appcache">
+<head>
+<meta charset="utf-8" />
+<title>Offline Audio Example</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="Alex Gibson" />
+<script src="sounds/ufo.js"></script>
+<script src="js/base64-binary.js"></script>
+<script type="text/javascript">
+
+var myAudioContext, mySource, myBuffer;
+
+if ('webkitAudioContext' in window || 'AudioContext' in window) {
+	myAudioContext = new webkitAudioContext() || AudioContext();
+	mySource = myAudioContext.createBufferSource()
+} else {
+	alert('Your browser does not support Web Audio API');
+}
+
+function play () {
+	mySource.buffer = myBuffer;
+	mySource.connect(myAudioContext.destination);
+	mySource.noteOn(0);
+}
+
+var load = (function (url) {
+	var arrayBuff = Base64Binary.decodeArrayBuffer(sound);
+
+	myAudioContext.decodeAudioData(arrayBuff, function(audioData) {
+		myBuffer = audioData;
+	});
+}());
+
+</script>
+</head>
+
+<body>
+<h1>Offline Web Audio Demo</h1>
+<p>The sound in this demo is stored as a base64 string and converted back to audio data for playback via the Web Audio API. This enables mobile browsers such as iOS6 Safari to cache audio offline for playback.</p>
+<p>Press play below:</p>
+<button onClick="play();">Play</button>
+<p>Fork on <a href="https://github.com/alexgibson/offlinewebaudio">GitHub</a></p>
+<p>Author: <a href="http://alxgbsn.co.uk">Alex Gibson</a></p>
+</body>
+</html>
