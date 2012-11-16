@@ -13,12 +13,12 @@ var myAudioContext, mySource, myBuffer;
 
 if ('webkitAudioContext' in window || 'AudioContext' in window) {
 	myAudioContext = new webkitAudioContext() || AudioContext();
-	mySource = myAudioContext.createBufferSource()
 } else {
 	alert('Your browser does not support Web Audio API');
 }
 
 function play () {
+	mySource = myAudioContext.createBufferSource();
 	mySource.buffer = myBuffer;
 	mySource.connect(myAudioContext.destination);
 	mySource.noteOn(0);
@@ -39,8 +39,8 @@ var load = (function (url) {
 <h1>Offline Web Audio Demo</h1>
 <p>The sound in this demo is stored as a base64 string and converted back to audio data for playback via the Web Audio API. This enables mobile browsers such as iOS6 Safari to cache audio offline for playback.</p>
 <p>Press play below:</p>
-<button onClick="play();">Play</button>
+<button onClick="play();" style="height: 44px; width: 75px;">Play</button>
 <p>Fork on <a href="https://github.com/alexgibson/offlinewebaudio">GitHub</a></p>
-<p>Author: <a href="http://alxgbsn.co.uk">Alex Gibson</a></p>
+<p>Demo by: <a href="http://alxgbsn.co.uk">Alex Gibson</a></p>
 </body>
 </html>
