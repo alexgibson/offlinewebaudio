@@ -1,0 +1,9 @@
+CACHE MANIFEST
+#version 1.0.0
+
+index.html
+js/base64-binary.js
+sounds/ufo.js
+
+NETWORK:
+*
