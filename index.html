@@ -11,10 +11,10 @@
 
 var myAudioContext, mySource, myBuffer;
 
-if ('webkitAudioContext' in window || 'AudioContext' in window) {
-	myAudioContext = new webkitAudioContext() || AudioContext();
+if ('webkitAudioContext' in window) {
+	myAudioContext = new webkitAudioContext();
 } else {
-	alert('Your browser does not support Web Audio API');
+	alert('Your browser does not support yet Web Audio API');
 }
 
 function play () {
