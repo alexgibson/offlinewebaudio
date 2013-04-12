@@ -11,25 +11,36 @@
 
 var myAudioContext, mySource, myBuffer;
 
-if ('webkitAudioContext' in window) {
+if ('AudioContext' in window) {
+	myAudioContext = new AudioContext();
+} else if ('webkitAudioContext' in window) {
 	myAudioContext = new webkitAudioContext();
 } else {
 	alert('Your browser does not support yet Web Audio API');
 }
 
 function play () {
+
 	mySource = myAudioContext.createBufferSource();
 	mySource.buffer = myBuffer;
 	mySource.connect(myAudioContext.destination);
-	mySource.noteOn(0);
+
+	if ('AudioContext' in window) {
+		mySource.start(0);
+	} else if ('webkitAudioContext' in window) {
+		mySource.noteOn(0);
+	} 
+	
 }
 
 var load = (function (url) {
+
 	var arrayBuff = Base64Binary.decodeArrayBuffer(sound);
 
 	myAudioContext.decodeAudioData(arrayBuff, function(audioData) {
 		myBuffer = audioData;
 	});
+	
 }());
 
 </script>
