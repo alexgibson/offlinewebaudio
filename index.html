@@ -29,8 +29,8 @@ function play () {
 		mySource.start(0);
 	} else if ('webkitAudioContext' in window) {
 		mySource.noteOn(0);
-	} 
-	
+	}
+
 }
 
 var load = (function (url) {
@@ -40,7 +40,7 @@ var load = (function (url) {
 	myAudioContext.decodeAudioData(arrayBuff, function(audioData) {
 		myBuffer = audioData;
 	});
-	
+
 }());
 
 </script>
@@ -53,5 +53,6 @@ var load = (function (url) {
 <button onClick="play();" style="height: 44px; width: 75px;">Play</button>
 <p>Fork on <a href="https://github.com/alexgibson/offlinewebaudio">GitHub</a></p>
 <p>Demo by: <a href="http://alxgbsn.co.uk">Alex Gibson</a></p>
+
 </body>
 </html>
